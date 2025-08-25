@@ -3,252 +3,219 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Unix - A New Social Era</title>
-  <style>
-    @import url('https://fonts.googleapis.com/css2?family=Roboto:wght@400;700&display=swap');
+  <title>UniX – A New Social Era</title>
+  
+  <!-- Import Google Fonts (for fallback if Sifonn is not hosted) -->
+  <link href="https://fonts.googleapis.com/css2?family=Orbitron:wght@600&display=swap" rel="stylesheet">
 
-    * { margin:0; padding:0; box-sizing:border-box; }
+  <style>
+    /* Reset */
+    * { margin: 0; padding: 0; box-sizing: border-box; }
 
     body {
-      font-family: 'Roboto', sans-serif;
-      background: #000;
-      color: #fff;
+      font-family: 'Sifonn', 'Orbitron', sans-serif;
+      color: white;
+      min-height: 100vh;
       overflow-x: hidden;
+      position: relative;
+      background: black;
     }
 
-    /* Background stars */
-    .stars {
+    /* Animated stars background */
+    body::before {
+      content: '';
       position: fixed;
-      width: 100%;
-      height: 100%;
-      background: transparent;
+      top: 0; left: 0;
+      width: 100%; height: 100%;
+      background: radial-gradient(circle, rgba(255,255,255,0.8) 1px, transparent 1px);
+      background-size: 3px 3px;
+      animation: moveStars 60s linear infinite;
       z-index: -1;
+      opacity: 0.6;
     }
 
-    .star {
-      position: absolute;
-      width: 2px;
-      height: 2px;
-      background: white;
-      border-radius: 50%;
-      animation: twinkle 2s infinite ease-in-out alternate;
-    }
-
-    @keyframes twinkle {
-      from { opacity: 0.2; }
-      to { opacity: 1; }
+    @keyframes moveStars {
+      from { background-position: 0 0; }
+      to { background-position: 10000px 5000px; }
     }
 
     header {
+      padding: 2rem;
       text-align: center;
-      padding: 100px 20px 50px;
+      font-size: 2.5rem;
+      font-weight: bold;
+      letter-spacing: 2px;
     }
 
-    header h1 {
-      font-size: 3em;
-      margin-bottom: 15px;
-      background: linear-gradient(45deg, #ff7e5f, #feb47b, #86a8e7, #7f7fd5);
-      -webkit-background-clip: text;
-      -webkit-text-fill-color: transparent;
-      animation: glow 4s ease-in-out infinite alternate;
+    .hero {
+      text-align: center;
+      padding: 5rem 2rem 3rem;
     }
 
-    @keyframes glow {
-      from { text-shadow: 0 0 10px #7f7fd5; }
-      to { text-shadow: 0 0 25px #ff7e5f; }
+    .hero h2 {
+      font-size: 2rem;
+      margin-bottom: 1rem;
     }
 
-    header p {
-      font-size: 1.2em;
-      color: #ccc;
+    .hero p {
+      font-size: 1.2rem;
+      margin-bottom: 2rem;
+      opacity: 0.8;
     }
 
-    .cards {
+    /* Email form */
+    .email-form {
       display: flex;
       justify-content: center;
-      gap: 20px;
-      padding: 50px 20px;
+      gap: 10px;
       flex-wrap: wrap;
     }
 
+    .email-form input {
+      padding: 12px 15px;
+      border: none;
+      border-radius: 6px;
+      font-size: 1rem;
+      min-width: 250px;
+      outline: none;
+    }
+
+    .email-form button {
+      padding: 12px 20px;
+      background: #00ffcc;
+      border: none;
+      border-radius: 6px;
+      font-size: 1rem;
+      cursor: pointer;
+      font-weight: bold;
+      transition: 0.3s;
+    }
+
+    .email-form button:hover {
+      background: #00cc99;
+    }
+
+    /* Cards */
+    .cards {
+      display: flex;
+      flex-wrap: wrap;
+      justify-content: center;
+      gap: 2rem;
+      padding: 5rem 2rem;
+    }
+
     .card {
-      background: rgba(255, 255, 255, 0.1);
-      border-radius: 15px;
-      padding: 30px 20px;
-      max-width: 300px;
-      flex: 1;
+      background: rgba(255,255,255,0.05);
+      border: 1px solid rgba(255,255,255,0.1);
+      border-radius: 12px;
+      padding: 2rem;
+      width: 280px;
       text-align: center;
-      backdrop-filter: blur(10px);
-      box-shadow: 0 8px 25px rgba(0,0,0,0.6);
-      transition: transform 0.3s ease, box-shadow 0.3s ease;
+      backdrop-filter: blur(8px);
+      transition: transform 0.3s;
     }
 
     .card:hover {
-      transform: translateY(-10px);
-      box-shadow: 0 12px 30px rgba(255,255,255,0.2);
+      transform: translateY(-10px) scale(1.05);
     }
 
     .card h3 {
-      margin-bottom: 15px;
-      font-size: 1.5em;
-      color: #fff;
+      margin-bottom: 1rem;
+      font-size: 1.3rem;
     }
 
     .card p {
-      color: #ccc;
-      line-height: 1.5;
-    }
-
-    .subscribe {
-      text-align: center;
-      padding: 50px 20px;
-    }
-
-    .subscribe h2 {
-      font-size: 2em;
-      margin-bottom: 20px;
-    }
-
-    input[type="email"] {
-      padding: 14px 18px;
-      border: none;
-      border-radius: 10px;
-      margin-right: 10px;
-      font-size: 1em;
-      width: 250px;
-      max-width: 80%;
-    }
-
-    button {
-      padding: 14px 20px;
-      border: none;
-      border-radius: 10px;
-      background-color: #fff;
-      color: #ff7e5f;
-      font-weight: bold;
-      font-size: 1em;
-      cursor: pointer;
-      transition: transform 0.2s, background 0.3s;
-    }
-
-    button:hover {
-      background-color: #ffe0d6;
-      transform: scale(1.05);
-    }
-
-    .success {
-      margin-top: 15px;
-      font-weight: bold;
-      color: #00ff99;
+      opacity: 0.85;
+      font-size: 1rem;
     }
 
     footer {
       text-align: center;
-      padding: 30px 20px;
-      color: #aaa;
+      padding: 2rem;
+      font-size: 1rem;
+      opacity: 0.8;
     }
 
     footer a {
-      color: #ff7e5f;
-      text-decoration: none;
-      font-weight: bold;
+      color: #00ffcc;
       margin: 0 10px;
+      text-decoration: none;
       transition: color 0.3s;
     }
 
     footer a:hover {
-      color: #fff;
+      color: #00cc99;
     }
   </style>
 </head>
 <body>
 
-<div class="stars" id="stars"></div>
+  <header>UniX</header>
 
-<header>
-  <h1>🚀 Unix is Coming</h1>
-  <p>A new era of social connection. Private. Mysterious. Infinite.</p>
-</header>
+  <section class="hero">
+    <h2>A New Era of Social Media</h2>
+    <p>Something mysterious is coming… Be the first to know.</p>
+    <form class="email-form" id="emailForm">
+      <input type="email" id="emailInput" placeholder="Enter your email" required>
+      <button type="submit">Notify Me</button>
+    </form>
+  </section>
 
-<section class="cards">
-  <div class="card">
-    <h3>🔮 Beyond Ordinary</h3>
-    <p>Unix isn’t just another app. It’s a portal to a world where your voice truly matters.</p>
-  </div>
-  <div class="card">
-    <h3>🕶️ Mystery Awaits</h3>
-    <p>What happens inside Unix? Only those who dare to join will find out.</p>
-  </div>
-  <div class="card">
-    <h3>⚡ Built for the Future</h3>
-    <p>Fast, secure, limitless. Unix is the next evolution of human connection.</p>
-  </div>
-</section>
+  <section class="cards">
+    <div class="card">
+      <h3>The Unknown</h3>
+      <p>UniX isn’t just another platform. It’s a movement. Something hidden in plain sight, waiting to be discovered.</p>
+    </div>
+    <div class="card">
+      <h3>The Connection</h3>
+      <p>A new way to connect. Private, powerful, and unlike anything you've seen before.</p>
+    </div>
+    <div class="card">
+      <h3>The Future</h3>
+      <p>The digital world is about to shift. UniX is the beginning of something bigger than social media.</p>
+    </div>
+  </section>
 
-<section class="subscribe">
-  <h2>Be the First to Know</h2>
-  <form id="emailForm">
-    <input type="email" id="emailInput" placeholder="Enter your email" required>
-    <button type="submit">Notify Me</button>
-    <div class="success" id="successMessage"></div>
-  </form>
-</section>
-
-<footer>
-  <p>Follow us on 
-    <a href="https://x.com/UniXinSocial" target="_blank">X</a> | 
+  <footer>
+    <p>Follow us:</p>
+    <a href="https://x.com/UniXinSocial" target="_blank">X</a> |
     <a href="https://instagram.com/unixgram" target="_blank">Instagram</a>
-  </p>
-</footer>
+  </footer>
 
-<script type="module">
-  // Stars generator
-  const starsContainer = document.getElementById('stars');
-  for (let i = 0; i < 120; i++) {
-    const star = document.createElement('div');
-    star.className = 'star';
-    star.style.top = Math.random() * 100 + '%';
-    star.style.left = Math.random() * 100 + '%';
-    star.style.animationDuration = (Math.random() * 3 + 2) + 's';
-    starsContainer.appendChild(star);
-  }
+  <!-- Firebase -->
+  <script type="module">
+    import { initializeApp } from "https://www.gstatic.com/firebasejs/10.12.2/firebase-app.js";
+    import { getFirestore, collection, addDoc } from "https://www.gstatic.com/firebasejs/10.12.2/firebase-firestore.js";
 
-  // Firebase
-  import { initializeApp } from "https://www.gstatic.com/firebasejs/11.0.1/firebase-app.js";
-  import { getFirestore, collection, addDoc } from "https://www.gstatic.com/firebasejs/11.0.1/firebase-firestore.js";
+    const firebaseConfig = {
+      apiKey: "AIzaSyD8alIlbfFqBRkF7acwibTNTsRP-8XnbHg",
+      authDomain: "landing-b1822.firebaseapp.com",
+      projectId: "landing-b1822",
+      storageBucket: "landing-b1822.appspot.com",
+      messagingSenderId: "11855079059",
+      appId: "1:11855079059:web:1085c85cf3ef3bb7cf4f66",
+      measurementId: "G-5S4P4SWD95"
+    };
 
-  const firebaseConfig = {
-    apiKey: "AIzaSyD8alIlbfFqBRkF7acwibTNTsRP-8XnbHg",
-    authDomain: "landing-b1822.firebaseapp.com",
-    projectId: "landing-b1822",
-    storageBucket: "landing-b1822.firebasestorage.app",
-    messagingSenderId: "11855079059",
-    appId: "1:11855079059:web:1085c85cf3ef3bb7cf4f66",
-    measurementId: "G-5S4P4SWD95"
-  };
+    const app = initializeApp(firebaseConfig);
+    const db = getFirestore(app);
 
-  const app = initializeApp(firebaseConfig);
-  const db = getFirestore(app);
+    const form = document.getElementById('emailForm');
+    const emailInput = document.getElementById('emailInput');
 
-  const form = document.getElementById('emailForm');
-  const input = document.getElementById('emailInput');
-  const successMessage = document.getElementById('successMessage');
+    form.addEventListener('submit', async (e) => {
+      e.preventDefault();
+      const email = emailInput.value;
 
-  form.addEventListener('submit', async (e) => {
-    e.preventDefault();
-    const email = input.value.trim();
-    if (email) {
       try {
-        await addDoc(collection(db, "subscribers"), { email, createdAt: new Date() });
-        successMessage.textContent = "✅ Thanks! You're on the list.";
-        input.value = '';
+        await addDoc(collection(db, "emails"), { email, timestamp: new Date() });
+        alert("Thanks! You’ll be notified when UniX launches.");
+        emailInput.value = "";
       } catch (err) {
-        console.error("Error saving email:", err);
-        successMessage.textContent = "❌ Something went wrong, try again.";
+        console.error("Error adding document: ", err);
+        alert("Something went wrong. Try again later.");
       }
-    }
-  });
-</script>
-
+    });
+  </script>
 </body>
 </html>
