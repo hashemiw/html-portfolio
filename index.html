@@ -1,197 +1,202 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-  <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>UniX – A New Social Era</title>
-  
-  <!-- Import Google Fonts (for fallback if Sifonn is not hosted) -->
-  <link href="https://fonts.googleapis.com/css2?family=Orbitron:wght@600&display=swap" rel="stylesheet">
-
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>Unix – A New Social Universe</title>
   <style>
-    /* Reset */
+    @import url('https://fonts.googleapis.com/css2?family=Roboto:wght@400;700&display=swap');
+
     * { margin: 0; padding: 0; box-sizing: border-box; }
 
     body {
-      font-family: 'Sifonn', 'Orbitron', sans-serif;
-      color: white;
+      font-family: 'Roboto', sans-serif;
       min-height: 100vh;
-      overflow-x: hidden;
-      position: relative;
       background: black;
+      overflow-x: hidden;
+      color: #fff;
     }
 
-    /* Animated stars background */
+    /* Starfield background */
     body::before {
-      content: '';
+      content: "";
       position: fixed;
       top: 0; left: 0;
       width: 100%; height: 100%;
-      background: radial-gradient(circle, rgba(255,255,255,0.8) 1px, transparent 1px);
-      background-size: 3px 3px;
-      animation: moveStars 60s linear infinite;
+      background: radial-gradient(ellipse at bottom, #1b2735 0%, #090a0f 100%);
+      z-index: -2;
+    }
+
+    body::after {
+      content: "";
+      position: fixed;
+      top: 0; left: 0;
+      width: 200%; height: 200%;
+      background: transparent url("https://www.transparenttextures.com/patterns/stardust.png") repeat;
+      animation: moveStars 100s linear infinite;
       z-index: -1;
-      opacity: 0.6;
+      opacity: 0.4;
     }
 
     @keyframes moveStars {
-      from { background-position: 0 0; }
-      to { background-position: 10000px 5000px; }
+      from { transform: translateY(0); }
+      to { transform: translateY(-1000px); }
     }
 
     header {
-      padding: 2rem;
       text-align: center;
-      font-size: 2.5rem;
+      padding: 60px 20px 40px;
+    }
+
+    header h1 {
+      font-size: 3em;
+      background: linear-gradient(90deg, #ff7e5f, #feb47b, #86a8e7, #7f7fd5);
+      -webkit-background-clip: text;
+      -webkit-text-fill-color: transparent;
+      animation: gradientMove 6s ease infinite;
+    }
+
+    @keyframes gradientMove {
+      0% { background-position: 0% 50%; }
+      50% { background-position: 100% 50%; }
+      100% { background-position: 0% 50%; }
+    }
+
+    header p {
+      font-size: 1.2em;
+      margin-top: 15px;
+      color: #aaa;
+    }
+
+    .container {
+      text-align: center;
+      padding: 40px 20px;
+      max-width: 600px;
+      margin: auto;
+    }
+
+    input[type="email"] {
+      width: 100%;
+      padding: 14px 18px;
+      border-radius: 10px;
+      border: none;
+      margin-bottom: 20px;
+      font-size: 1em;
+    }
+
+    button {
+      padding: 14px 20px;
+      width: 100%;
+      border: none;
+      border-radius: 10px;
+      background-color: #fff;
+      color: #ff7e5f;
       font-weight: bold;
-      letter-spacing: 2px;
-    }
-
-    .hero {
-      text-align: center;
-      padding: 5rem 2rem 3rem;
-    }
-
-    .hero h2 {
-      font-size: 2rem;
-      margin-bottom: 1rem;
-    }
-
-    .hero p {
-      font-size: 1.2rem;
-      margin-bottom: 2rem;
-      opacity: 0.8;
-    }
-
-    /* Email form */
-    .email-form {
-      display: flex;
-      justify-content: center;
-      gap: 10px;
-      flex-wrap: wrap;
-    }
-
-    .email-form input {
-      padding: 12px 15px;
-      border: none;
-      border-radius: 6px;
-      font-size: 1rem;
-      min-width: 250px;
-      outline: none;
-    }
-
-    .email-form button {
-      padding: 12px 20px;
-      background: #00ffcc;
-      border: none;
-      border-radius: 6px;
-      font-size: 1rem;
+      font-size: 1em;
       cursor: pointer;
-      font-weight: bold;
-      transition: 0.3s;
+      transition: transform 0.2s, background 0.3s;
     }
 
-    .email-form button:hover {
-      background: #00cc99;
-    }
+    button:hover { background-color: #ffe0d6; transform: scale(1.05); }
 
-    /* Cards */
+    .success { margin-top: 15px; color: #00ff99; font-weight: bold; }
+
     .cards {
-      display: flex;
-      flex-wrap: wrap;
-      justify-content: center;
-      gap: 2rem;
-      padding: 5rem 2rem;
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+      gap: 30px;
+      padding: 60px 20px;
+      max-width: 1000px;
+      margin: auto;
     }
 
     .card {
-      background: rgba(255,255,255,0.05);
-      border: 1px solid rgba(255,255,255,0.1);
-      border-radius: 12px;
-      padding: 2rem;
-      width: 280px;
-      text-align: center;
-      backdrop-filter: blur(8px);
-      transition: transform 0.3s;
+      background: rgba(255, 255, 255, 0.05);
+      padding: 30px;
+      border-radius: 15px;
+      backdrop-filter: blur(6px);
+      box-shadow: 0 0 15px rgba(255,255,255,0.1);
+      transition: transform 0.3s ease, box-shadow 0.3s ease;
     }
 
     .card:hover {
-      transform: translateY(-10px) scale(1.05);
+      transform: translateY(-10px) scale(1.03);
+      box-shadow: 0 0 25px rgba(255,255,255,0.2);
     }
 
     .card h3 {
-      margin-bottom: 1rem;
-      font-size: 1.3rem;
+      margin-bottom: 15px;
+      color: #ffb347;
+      font-size: 1.5em;
     }
 
     .card p {
-      opacity: 0.85;
-      font-size: 1rem;
+      color: #ddd;
+      line-height: 1.6;
     }
 
     footer {
       text-align: center;
-      padding: 2rem;
-      font-size: 1rem;
-      opacity: 0.8;
+      padding: 40px 20px;
+      color: #aaa;
     }
 
     footer a {
-      color: #00ffcc;
-      margin: 0 10px;
+      color: #fff;
       text-decoration: none;
+      margin: 0 10px;
       transition: color 0.3s;
     }
 
-    footer a:hover {
-      color: #00cc99;
-    }
+    footer a:hover { color: #ffb347; }
+
   </style>
 </head>
 <body>
 
-  <header>UniX</header>
+  <header>
+    <h1>Unix – The Next Social Universe 🌌</h1>
+    <p>Something mysterious is forming beyond the horizon...</p>
+  </header>
 
-  <section class="hero">
-    <h2>A New Era of Social Media</h2>
-    <p>Something mysterious is coming… Be the first to know.</p>
-    <form class="email-form" id="emailForm">
-      <input type="email" id="emailInput" placeholder="Enter your email" required>
+  <div class="container">
+    <form id="emailForm">
+      <input type="email" id="emailInput" placeholder="Enter your email to join early" required>
       <button type="submit">Notify Me</button>
+      <div class="success" id="successMessage"></div>
     </form>
-  </section>
+  </div>
 
   <section class="cards">
     <div class="card">
-      <h3>The Unknown</h3>
-      <p>UniX isn’t just another platform. It’s a movement. Something hidden in plain sight, waiting to be discovered.</p>
+      <h3>🌙 A Hidden Realm</h3>
+      <p>Unix isn’t just another app. It’s a secret passage into a new dimension of connection, waiting to unfold.</p>
     </div>
     <div class="card">
-      <h3>The Connection</h3>
-      <p>A new way to connect. Private, powerful, and unlike anything you've seen before.</p>
+      <h3>🚀 A Social Revolution</h3>
+      <p>Forget the old world of likes and follows. Unix is rewriting the language of digital interaction.</p>
     </div>
     <div class="card">
-      <h3>The Future</h3>
-      <p>The digital world is about to shift. UniX is the beginning of something bigger than social media.</p>
+      <h3>✨ For the Chosen Few</h3>
+      <p>The first to arrive will shape the story. Drop your email and secure your place among the pioneers.</p>
     </div>
   </section>
 
   <footer>
-    <p>Follow us:</p>
-    <a href="https://x.com/UniXinSocial" target="_blank">X</a> |
+    <p>Follow the journey:</p>
+    <a href="https://x.com/UniXinSocial" target="_blank">X (Twitter)</a> |
     <a href="https://instagram.com/unixgram" target="_blank">Instagram</a>
   </footer>
 
-  <!-- Firebase -->
   <script type="module">
-    import { initializeApp } from "https://www.gstatic.com/firebasejs/10.12.2/firebase-app.js";
-    import { getFirestore, collection, addDoc } from "https://www.gstatic.com/firebasejs/10.12.2/firebase-firestore.js";
+    import { initializeApp } from "https://www.gstatic.com/firebasejs/11.0.1/firebase-app.js";
+    import { getFirestore, collection, addDoc } from "https://www.gstatic.com/firebasejs/11.0.1/firebase-firestore.js";
 
     const firebaseConfig = {
       apiKey: "AIzaSyD8alIlbfFqBRkF7acwibTNTsRP-8XnbHg",
       authDomain: "landing-b1822.firebaseapp.com",
       projectId: "landing-b1822",
-      storageBucket: "landing-b1822.appspot.com",
+      storageBucket: "landing-b1822.firebasestorage.app",
       messagingSenderId: "11855079059",
       appId: "1:11855079059:web:1085c85cf3ef3bb7cf4f66",
       measurementId: "G-5S4P4SWD95"
@@ -201,19 +206,21 @@
     const db = getFirestore(app);
 
     const form = document.getElementById('emailForm');
-    const emailInput = document.getElementById('emailInput');
+    const input = document.getElementById('emailInput');
+    const successMessage = document.getElementById('successMessage');
 
     form.addEventListener('submit', async (e) => {
       e.preventDefault();
-      const email = emailInput.value;
-
-      try {
-        await addDoc(collection(db, "emails"), { email, timestamp: new Date() });
-        alert("Thanks! You’ll be notified when UniX launches.");
-        emailInput.value = "";
-      } catch (err) {
-        console.error("Error adding document: ", err);
-        alert("Something went wrong. Try again later.");
+      const email = input.value.trim();
+      if(email){
+        try {
+          await addDoc(collection(db, "subscribers"), { email, createdAt: new Date() });
+          successMessage.textContent = "✅ Welcome, Pioneer. You’re on the list.";
+          input.value = '';
+        } catch (err) {
+          console.error("Error saving email:", err);
+          successMessage.textContent = "❌ Something went wrong, try again.";
+        }
       }
     });
   </script>
