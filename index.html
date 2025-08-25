@@ -1,228 +1,187 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-  <meta charset="UTF-8" />
-  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
-  <title>Unix – A New Social Universe</title>
-  <style>
-    @import url('https://fonts.googleapis.com/css2?family=Roboto:wght@400;700&display=swap');
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>UniX – The Next Social Universe</title>
+<style>
+  @import url('https://fonts.googleapis.com/css2?family=Roboto:wght@400;700&display=swap');
 
-    * { margin: 0; padding: 0; box-sizing: border-box; }
+  * { margin:0; padding:0; box-sizing:border-box; }
+  body, html { height:100%; font-family:'Roboto', sans-serif; overflow-x:hidden; }
 
-    body {
-      font-family: 'Roboto', sans-serif;
-      min-height: 100vh;
-      background: black;
-      overflow-x: hidden;
-      color: #fff;
-    }
+  /* Particle background container */
+  #particles-js {
+    position: fixed;
+    width: 100%;
+    height: 100%;
+    background: #000;
+    z-index: -1;
+  }
 
-    /* Starfield background */
-    body::before {
-      content: "";
-      position: fixed;
-      top: 0; left: 0;
-      width: 100%; height: 100%;
-      background: radial-gradient(ellipse at bottom, #1b2735 0%, #090a0f 100%);
-      z-index: -2;
-    }
+  header {
+    display:flex;
+    flex-direction:column;
+    justify-content:center;
+    align-items:center;
+    height:100vh;
+    padding:20px;
+    color:#fff;
+    text-align:center;
+  }
+  header h1 { font-size:3em; margin-bottom:20px; }
+  header p { font-size:1.2em; margin-bottom:30px; max-width:500px; }
 
-    body::after {
-      content: "";
-      position: fixed;
-      top: 0; left: 0;
-      width: 200%; height: 200%;
-      background: transparent url("https://www.transparenttextures.com/patterns/stardust.png") repeat;
-      animation: moveStars 100s linear infinite;
-      z-index: -1;
-      opacity: 0.4;
-    }
+  form {
+    display:flex;
+    flex-direction: column;
+    width:100%;
+    max-width:400px;
+    margin:0 auto;
+  }
+  input[type="email"] { padding:14px 18px; border:none; border-radius:10px; font-size:1em; margin-bottom:15px; }
+  button {
+    padding:14px 20px;
+    border:none;
+    border-radius:10px;
+    background:#fff;
+    color:#ff7e5f;
+    font-weight:bold;
+    font-size:1em;
+    cursor:pointer;
+    transition:0.3s;
+  }
+  button:hover { transform: scale(1.05); background:#ffe0d6; }
 
-    @keyframes moveStars {
-      from { transform: translateY(0); }
-      to { transform: translateY(-1000px); }
-    }
+  .success { margin-top:15px; color:#00ff99; font-weight:bold; }
 
-    header {
-      text-align: center;
-      padding: 60px 20px 40px;
-    }
+  section.features {
+    padding:60px 20px;
+    display:flex;
+    flex-wrap:wrap;
+    justify-content:center;
+    gap:30px;
+    background:#111;
+  }
+  .feature {
+    width:250px;
+    background:rgba(255,255,255,0.05);
+    padding:20px;
+    border-radius:15px;
+    transition:0.3s;
+    color:#fff;
+  }
+  .feature:hover { transform: translateY(-10px); background:rgba(255,255,255,0.1); }
+  .feature h3 { margin-bottom:10px; }
+  .feature p { font-size:0.95em; line-height:1.4; }
 
-    header h1 {
-      font-size: 3em;
-      background: linear-gradient(90deg, #ff7e5f, #feb47b, #86a8e7, #7f7fd5);
-      -webkit-background-clip: text;
-      -webkit-text-fill-color: transparent;
-      animation: gradientMove 6s ease infinite;
-    }
+  footer {
+    padding:20px;
+    background:#111;
+    font-size:0.9em;
+    color:#fff;
+  }
+  footer a { color:#fff; margin:0 10px; text-decoration:none; transition:0.2s; }
+  footer a:hover { color:#00ff99; }
 
-    @keyframes gradientMove {
-      0% { background-position: 0% 50%; }
-      50% { background-position: 100% 50%; }
-      100% { background-position: 0% 50%; }
-    }
-
-    header p {
-      font-size: 1.2em;
-      margin-top: 15px;
-      color: #aaa;
-    }
-
-    .container {
-      text-align: center;
-      padding: 40px 20px;
-      max-width: 600px;
-      margin: auto;
-    }
-
-    input[type="email"] {
-      width: 100%;
-      padding: 14px 18px;
-      border-radius: 10px;
-      border: none;
-      margin-bottom: 20px;
-      font-size: 1em;
-    }
-
-    button {
-      padding: 14px 20px;
-      width: 100%;
-      border: none;
-      border-radius: 10px;
-      background-color: #fff;
-      color: #ff7e5f;
-      font-weight: bold;
-      font-size: 1em;
-      cursor: pointer;
-      transition: transform 0.2s, background 0.3s;
-    }
-
-    button:hover { background-color: #ffe0d6; transform: scale(1.05); }
-
-    .success { margin-top: 15px; color: #00ff99; font-weight: bold; }
-
-    .cards {
-      display: grid;
-      grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
-      gap: 30px;
-      padding: 60px 20px;
-      max-width: 1000px;
-      margin: auto;
-    }
-
-    .card {
-      background: rgba(255, 255, 255, 0.05);
-      padding: 30px;
-      border-radius: 15px;
-      backdrop-filter: blur(6px);
-      box-shadow: 0 0 15px rgba(255,255,255,0.1);
-      transition: transform 0.3s ease, box-shadow 0.3s ease;
-    }
-
-    .card:hover {
-      transform: translateY(-10px) scale(1.03);
-      box-shadow: 0 0 25px rgba(255,255,255,0.2);
-    }
-
-    .card h3 {
-      margin-bottom: 15px;
-      color: #ffb347;
-      font-size: 1.5em;
-    }
-
-    .card p {
-      color: #ddd;
-      line-height: 1.6;
-    }
-
-    footer {
-      text-align: center;
-      padding: 40px 20px;
-      color: #aaa;
-    }
-
-    footer a {
-      color: #fff;
-      text-decoration: none;
-      margin: 0 10px;
-      transition: color 0.3s;
-    }
-
-    footer a:hover { color: #ffb347; }
-
-  </style>
+  @media(max-width:768px){
+    header h1{font-size:2.2em;}
+    section.features{flex-direction:column; align-items:center;}
+    .feature{width:80%;}
+  }
+</style>
 </head>
 <body>
 
-  <header>
-    <h1>Unix – The Next Social Universe 🌌</h1>
-    <p>Something mysterious is forming beyond the horizon...</p>
-  </header>
+<div id="particles-js"></div>
 
-  <div class="container">
-    <form id="emailForm">
-      <input type="email" id="emailInput" placeholder="Enter your email to join early" required>
-      <button type="submit">Notify Me</button>
-      <div class="success" id="successMessage"></div>
-    </form>
+<header>
+  <h1>UniX – The Next Social Universe</h1>
+  <p>Sign up to be among the first explorers of the new digital frontier.</p>
+  <form id="emailForm">
+    <input type="email" id="emailInput" placeholder="Enter your email" required>
+    <button type="submit">Notify Me</button>
+    <div class="success" id="successMessage"></div>
+  </form>
+</header>
+
+<section class="features">
+  <div class="feature">
+    <h3>Enter the Unknown</h3>
+    <p>Step into a universe where connections go beyond likes and follows. UniX is more than a network — it’s a new dimension.</p>
   </div>
+  <div class="feature">
+    <h3>The Pulse of UniX</h3>
+    <p>Beneath every tap lies energy. UniX is powered by speed, simplicity, and a spark of mystery that keeps you coming back.</p>
+  </div>
+  <div class="feature">
+    <h3>Timeless Security</h3>
+    <p>We don’t just protect your data — we protect your destiny. Built for tomorrow, encrypted for eternity.</p>
+  </div>
+</section>
 
-  <section class="cards">
-    <div class="card">
-      <h3>🌙 A Hidden Realm</h3>
-      <p>Unix isn’t just another app. It’s a secret passage into a new dimension of connection, waiting to unfold.</p>
-    </div>
-    <div class="card">
-      <h3>🚀 A Social Revolution</h3>
-      <p>Forget the old world of likes and follows. Unix is rewriting the language of digital interaction.</p>
-    </div>
-    <div class="card">
-      <h3>✨ For the Chosen Few</h3>
-      <p>The first to arrive will shape the story. Drop your email and secure your place among the pioneers.</p>
-    </div>
-  </section>
-
-  <footer>
-    <p>Follow the journey:</p>
-    <a href="https://x.com/UniXinSocial" target="_blank">X (Twitter)</a> |
+<footer>
+  <p>&copy; 2025 Unix | 
+    <a href="https://x.com/UniXinSocial" target="_blank">X</a> | 
     <a href="https://instagram.com/unixgram" target="_blank">Instagram</a>
-  </footer>
+  </p>
+</footer>
 
-  <script type="module">
-    import { initializeApp } from "https://www.gstatic.com/firebasejs/11.0.1/firebase-app.js";
-    import { getFirestore, collection, addDoc } from "https://www.gstatic.com/firebasejs/11.0.1/firebase-firestore.js";
+<!-- JS: Firebase + Particles -->
+<script type="module">
+import { initializeApp } from "https://www.gstatic.com/firebasejs/11.0.1/firebase-app.js";
+import { getFirestore, collection, addDoc } from "https://www.gstatic.com/firebasejs/11.0.1/firebase-firestore.js";
 
-    const firebaseConfig = {
-      apiKey: "AIzaSyD8alIlbfFqBRkF7acwibTNTsRP-8XnbHg",
-      authDomain: "landing-b1822.firebaseapp.com",
-      projectId: "landing-b1822",
-      storageBucket: "landing-b1822.firebasestorage.app",
-      messagingSenderId: "11855079059",
-      appId: "1:11855079059:web:1085c85cf3ef3bb7cf4f66",
-      measurementId: "G-5S4P4SWD95"
-    };
+const firebaseConfig = {
+  apiKey: "AIzaSyD8alIlbfFqBRkF7acwibTNTsRP-8XnbHg",
+  authDomain: "landing-b1822.firebaseapp.com",
+  projectId: "landing-b1822",
+  storageBucket: "landing-b1822.firebasestorage.app",
+  messagingSenderId: "11855079059",
+  appId: "1:11855079059:web:1085c85cf3ef3bb7cf4f66",
+  measurementId: "G-5S4P4SWD95"
+};
 
-    const app = initializeApp(firebaseConfig);
-    const db = getFirestore(app);
+const app = initializeApp(firebaseConfig);
+const db = getFirestore(app);
 
-    const form = document.getElementById('emailForm');
-    const input = document.getElementById('emailInput');
-    const successMessage = document.getElementById('successMessage');
+const form = document.getElementById('emailForm');
+const input = document.getElementById('emailInput');
+const successMessage = document.getElementById('successMessage');
 
-    form.addEventListener('submit', async (e) => {
-      e.preventDefault();
-      const email = input.value.trim();
-      if(email){
-        try {
-          await addDoc(collection(db, "subscribers"), { email, createdAt: new Date() });
-          successMessage.textContent = "✅ Welcome, Pioneer. You’re on the list.";
-          input.value = '';
-        } catch (err) {
-          console.error("Error saving email:", err);
-          successMessage.textContent = "❌ Something went wrong, try again.";
-        }
-      }
-    });
-  </script>
+form.addEventListener('submit', async (e) => {
+  e.preventDefault();
+  const email = input.value.trim();
+  if(email){
+    try {
+      await addDoc(collection(db, "subscribers"), { email, createdAt: new Date() });
+      successMessage.textContent = "✅ Thanks! You're on the list.";
+      input.value = '';
+    } catch (err) {
+      console.error("Error saving email:", err);
+      successMessage.textContent = "❌ Something went wrong, try again.";
+    }
+  }
+});
+</script>
+
+<script src="https://cdn.jsdelivr.net/npm/particles.js@2.0.0/particles.min.js"></script>
+<script>
+  /* Particles.js configuration */
+  particlesJS("particles-js", {
+    "particles": {
+      "number": {"value":80,"density":{"enable":true,"value_area":800}},
+      "color": {"value":"#ffffff"},
+      "shape": {"type":"circle"},
+      "opacity": {"value":0.8, "random":true},
+      "size": {"value":2,"random":true},
+      "line_linked":{"enable":true,"distance":150,"color":"#ffffff","opacity":0.2,"width":1},
+      "move":{"enable":true,"speed":1,"direction":"none","random":true,"straight":false,"out_mode":"out","bounce":false}
+    },
+    "interactivity":{"detect_on":"canvas","events":{"onhover":{"enable":true,"mode":"repulse"},"onclick":{"enable":true,"mode":"push"}}, "modes":{"repulse":{"distance":100},"push":{"particles_nb":4}}},
+    "retina_detect":true
+  });
+</script>
+
 </body>
 </html>
