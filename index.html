@@ -84,24 +84,35 @@ const successMessage = document.getElementById('successMessage');
 form.addEventListener('submit', async (e) => {
   e.preventDefault();
   const email = input.value.trim();
-  if(email){
-    try {
-      const res = await fetch("https://unix-backend.vercel.app/api/subscribe", {
-        method: "POST",
-        headers: { "Content-Type": "application/json" },
-        body: JSON.stringify({ email })
-      });
-      const data = await res.json();
-      if(data.success){
-        successMessage.textContent = "✅ Thanks! You're on the list.";
-        input.value = '';
-      } else {
-        successMessage.textContent = "❌ " + (data.error || "Something went wrong.");
-      }
-    } catch (err) {
-      console.error(err);
-      successMessage.textContent = "❌ Something went wrong, try again.";
+
+  if (!email) return;
+
+  successMessage.textContent = "⏳ Sending...";
+
+  try {
+    const res = await fetch("https://unix-backend.vercel.app/api/subscribe", {
+      method: "POST",
+      headers: { "Content-Type": "application/json" },
+      body: JSON.stringify({ email })
+    });
+
+    if (!res.ok) {
+      const text = await res.text();
+      successMessage.textContent = "❌ Server error: " + text;
+      return;
     }
+
+    const data = await res.json();
+
+    if (data.success === true) {
+      successMessage.textContent = "✅ Thanks! You're on the list.";
+      input.value = '';
+    } else {
+      successMessage.textContent = "❌ " + (data.error || "Something went wrong.");
+    }
+  } catch (err) {
+    console.error(err);
+    successMessage.textContent = "❌ Network or server error. Try again.";
   }
 });
 </script>
