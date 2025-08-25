@@ -86,7 +86,7 @@ form.addEventListener('submit', async (e) => {
   const email = input.value.trim();
   if(email){
     try {
-      const res = await fetch("https://unix-backend.vercel.app/subscribe", {
+      const res = await fetch("https://unix-backend.vercel.app/api/subscribe", {
         method: "POST",
         headers: { "Content-Type": "application/json" },
         body: JSON.stringify({ email })
