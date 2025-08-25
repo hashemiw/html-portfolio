@@ -1,19 +1,122 @@
 <!DOCTYPE html>
 <html lang="en">
-    <head>
-        <meta charset="UTF-8">
-        <title>Matt's Portfolio</title>
-    </head>
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Coming Soon</title>
+  <style>
+    @import url('https://fonts.googleapis.com/css2?family=Roboto:wght@400;700&display=swap');
 
-    <body>
-        <h1>Matt's Portfolio</h1>
-        <h2>I'm a Web Developer & iOS Developer</h2>
-        <hr>
-        <h3><a href="https://apps.apple.com/us/app/palphone/id1637595045">iOS Project Palphone - App Stroe Download Link</a></h3>
-        <h3><a href="https://palphone.com">Palphone Website</a></h3>
-        <img src="./assets/images/palphone.png" alt="" height="500">
-        <hr>
-        <h3><a href="./public/about.html">About Me</a></h3>
-        <h3><a href="./public/contact.html">Contact Me</a></h3>
-    </body>
+    * {
+      box-sizing: border-box;
+      margin: 0;
+      padding: 0;
+    }
+
+    body {
+      font-family: 'Roboto', sans-serif;
+      background: linear-gradient(135deg, #ff7e5f, #feb47b);
+      height: 100vh;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      text-align: center;
+      color: #fff;
+      padding: 20px;
+      overflow: hidden;
+    }
+
+    .container {
+      background: rgba(0,0,0,0.2);
+      padding: 50px 30px;
+      border-radius: 20px;
+      max-width: 450px;
+      width: 100%;
+      box-shadow: 0 10px 25px rgba(0,0,0,0.3);
+      animation: fadeIn 1s ease-out;
+    }
+
+    h1 {
+      font-size: 2.5em;
+      margin-bottom: 15px;
+      animation: slideIn 1s ease-out;
+    }
+
+    p {
+      font-size: 1.1em;
+      margin-bottom: 30px;
+      line-height: 1.5;
+    }
+
+    input[type="email"] {
+      width: 100%;
+      padding: 14px 18px;
+      border-radius: 10px;
+      border: none;
+      margin-bottom: 20px;
+      font-size: 1em;
+    }
+
+    button {
+      padding: 14px 20px;
+      width: 100%;
+      border: none;
+      border-radius: 10px;
+      background-color: #fff;
+      color: #ff7e5f;
+      font-weight: bold;
+      font-size: 1em;
+      cursor: pointer;
+      transition: transform 0.2s, background 0.3s;
+    }
+
+    button:hover {
+      background-color: #ffe0d6;
+      transform: scale(1.05);
+    }
+
+    .success {
+      margin-top: 15px;
+      color: #00ff99;
+      font-weight: bold;
+    }
+
+    @keyframes fadeIn {
+      from { opacity: 0; transform: translateY(20px); }
+      to { opacity: 1; transform: translateY(0); }
+    }
+
+    @keyframes slideIn {
+      from { opacity: 0; transform: translateX(-30px); }
+      to { opacity: 1; transform: translateX(0); }
+    }
+  </style>
+</head>
+<body>
+  <div class="container">
+    <h1>🚀 Something Awesome is Coming!</h1>
+    <p>Drop your email below and be the first to know when we launch.</p>
+    <form id="emailForm">
+      <input type="email" id="emailInput" placeholder="Enter your email" required>
+      <button type="submit">Notify Me</button>
+      <div class="success" id="successMessage"></div>
+    </form>
+  </div>
+
+  <script>
+    const form = document.getElementById('emailForm');
+    const input = document.getElementById('emailInput');
+    const successMessage = document.getElementById('successMessage');
+
+    form.addEventListener('submit', (e) => {
+      e.preventDefault();
+      const email = input.value.trim();
+      if(email) {
+        console.log("Email submitted:", email); // Connect to your email service here
+        successMessage.textContent = "Thanks! We'll keep you updated.";
+        input.value = '';
+      }
+    });
+  </script>
+</body>
 </html>
