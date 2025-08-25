@@ -1,185 +1,252 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-<meta charset="UTF-8">
-<meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>Coming Soon</title>
-<style>
-  @import url('https://fonts.googleapis.com/css2?family=Roboto:wght@400;700&display=swap');
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Unix - A New Social Era</title>
+  <style>
+    @import url('https://fonts.googleapis.com/css2?family=Roboto:wght@400;700&display=swap');
 
-  * { margin:0; padding:0; box-sizing:border-box; }
-  body, html { height:100%; font-family:'Roboto', sans-serif; overflow-x:hidden; }
+    * { margin:0; padding:0; box-sizing:border-box; }
 
-  /* Particle background container */
-  #particles-js {
-    position: fixed;
-    width: 100%;
-    height: 100%;
-    background: #000;
-    z-index: -1;
-  }
+    body {
+      font-family: 'Roboto', sans-serif;
+      background: #000;
+      color: #fff;
+      overflow-x: hidden;
+    }
 
-  header {
-    display:flex;
-    flex-direction:column;
-    justify-content:center;
-    align-items:center;
-    height:100vh;
-    padding:20px;
-    color:#fff;
-    text-align:center;
-  }
-  header h1 { font-size:3em; margin-bottom:20px; }
-  header p { font-size:1.2em; margin-bottom:30px; max-width:500px; }
+    /* Background stars */
+    .stars {
+      position: fixed;
+      width: 100%;
+      height: 100%;
+      background: transparent;
+      z-index: -1;
+    }
 
-  form {
-    display:flex;
-    flex-direction: column;
-    width:100%;
-    max-width:400px;
-    margin:0 auto;
-  }
-  input[type="email"] { padding:14px 18px; border:none; border-radius:10px; font-size:1em; margin-bottom:15px; }
-  button {
-    padding:14px 20px;
-    border:none;
-    border-radius:10px;
-    background:#fff;
-    color:#ff7e5f;
-    font-weight:bold;
-    font-size:1em;
-    cursor:pointer;
-    transition:0.3s;
-  }
-  button:hover { transform: scale(1.05); background:#ffe0d6; }
+    .star {
+      position: absolute;
+      width: 2px;
+      height: 2px;
+      background: white;
+      border-radius: 50%;
+      animation: twinkle 2s infinite ease-in-out alternate;
+    }
 
-  .success { margin-top:15px; color:#00ff99; font-weight:bold; }
+    @keyframes twinkle {
+      from { opacity: 0.2; }
+      to { opacity: 1; }
+    }
 
-  section.features {
-    padding:60px 20px;
-    display:flex;
-    flex-wrap:wrap;
-    justify-content:center;
-    gap:30px;
-    background:#111;
-  }
-  .feature {
-    width:250px;
-    background:rgba(255,255,255,0.05);
-    padding:20px;
-    border-radius:15px;
-    transition:0.3s;
-    color:#fff;
-  }
-  .feature:hover { transform: translateY(-10px); background:rgba(255,255,255,0.1); }
-  .feature h3 { margin-bottom:10px; }
-  .feature p { font-size:0.95em; line-height:1.4; }
+    header {
+      text-align: center;
+      padding: 100px 20px 50px;
+    }
 
-  footer {
-    padding:20px;
-    background:#111;
-    font-size:0.9em;
-    color:#fff;
-  }
-  footer a { color:#fff; margin:0 10px; text-decoration:none; transition:0.2s; }
-  footer a:hover { color:#00ff99; }
+    header h1 {
+      font-size: 3em;
+      margin-bottom: 15px;
+      background: linear-gradient(45deg, #ff7e5f, #feb47b, #86a8e7, #7f7fd5);
+      -webkit-background-clip: text;
+      -webkit-text-fill-color: transparent;
+      animation: glow 4s ease-in-out infinite alternate;
+    }
 
-  @media(max-width:768px){
-    header h1{font-size:2.2em;}
-    section.features{flex-direction:column; align-items:center;}
-    .feature{width:80%;}
-  }
-</style>
+    @keyframes glow {
+      from { text-shadow: 0 0 10px #7f7fd5; }
+      to { text-shadow: 0 0 25px #ff7e5f; }
+    }
+
+    header p {
+      font-size: 1.2em;
+      color: #ccc;
+    }
+
+    .cards {
+      display: flex;
+      justify-content: center;
+      gap: 20px;
+      padding: 50px 20px;
+      flex-wrap: wrap;
+    }
+
+    .card {
+      background: rgba(255, 255, 255, 0.1);
+      border-radius: 15px;
+      padding: 30px 20px;
+      max-width: 300px;
+      flex: 1;
+      text-align: center;
+      backdrop-filter: blur(10px);
+      box-shadow: 0 8px 25px rgba(0,0,0,0.6);
+      transition: transform 0.3s ease, box-shadow 0.3s ease;
+    }
+
+    .card:hover {
+      transform: translateY(-10px);
+      box-shadow: 0 12px 30px rgba(255,255,255,0.2);
+    }
+
+    .card h3 {
+      margin-bottom: 15px;
+      font-size: 1.5em;
+      color: #fff;
+    }
+
+    .card p {
+      color: #ccc;
+      line-height: 1.5;
+    }
+
+    .subscribe {
+      text-align: center;
+      padding: 50px 20px;
+    }
+
+    .subscribe h2 {
+      font-size: 2em;
+      margin-bottom: 20px;
+    }
+
+    input[type="email"] {
+      padding: 14px 18px;
+      border: none;
+      border-radius: 10px;
+      margin-right: 10px;
+      font-size: 1em;
+      width: 250px;
+      max-width: 80%;
+    }
+
+    button {
+      padding: 14px 20px;
+      border: none;
+      border-radius: 10px;
+      background-color: #fff;
+      color: #ff7e5f;
+      font-weight: bold;
+      font-size: 1em;
+      cursor: pointer;
+      transition: transform 0.2s, background 0.3s;
+    }
+
+    button:hover {
+      background-color: #ffe0d6;
+      transform: scale(1.05);
+    }
+
+    .success {
+      margin-top: 15px;
+      font-weight: bold;
+      color: #00ff99;
+    }
+
+    footer {
+      text-align: center;
+      padding: 30px 20px;
+      color: #aaa;
+    }
+
+    footer a {
+      color: #ff7e5f;
+      text-decoration: none;
+      font-weight: bold;
+      margin: 0 10px;
+      transition: color 0.3s;
+    }
+
+    footer a:hover {
+      color: #fff;
+    }
+  </style>
 </head>
 <body>
 
-<div id="particles-js"></div>
+<div class="stars" id="stars"></div>
 
 <header>
-  <h1>Something Awesome is Coming!</h1>
-  <p>Sign up below to get notified when we launch our amazing product.</p>
+  <h1>🚀 Unix is Coming</h1>
+  <p>A new era of social connection. Private. Mysterious. Infinite.</p>
+</header>
+
+<section class="cards">
+  <div class="card">
+    <h3>🔮 Beyond Ordinary</h3>
+    <p>Unix isn’t just another app. It’s a portal to a world where your voice truly matters.</p>
+  </div>
+  <div class="card">
+    <h3>🕶️ Mystery Awaits</h3>
+    <p>What happens inside Unix? Only those who dare to join will find out.</p>
+  </div>
+  <div class="card">
+    <h3>⚡ Built for the Future</h3>
+    <p>Fast, secure, limitless. Unix is the next evolution of human connection.</p>
+  </div>
+</section>
+
+<section class="subscribe">
+  <h2>Be the First to Know</h2>
   <form id="emailForm">
     <input type="email" id="emailInput" placeholder="Enter your email" required>
     <button type="submit">Notify Me</button>
     <div class="success" id="successMessage"></div>
   </form>
-</header>
-
-<section class="features">
-  <div class="feature">
-    <h3>🚀 Fast</h3>
-    <p>Experience lightning-fast performance from day one.</p>
-  </div>
-  <div class="feature">
-    <h3>💡 Innovative</h3>
-    <p>We bring new ideas to life with a simple and smart design.</p>
-  </div>
-  <div class="feature">
-    <h3>🔒 Secure</h3>
-    <p>Your data is safe with us, protected by top-notch security.</p>
-  </div>
 </section>
 
 <footer>
-  <p>&copy; 2025 MyLandingPage | 
-    <a href="#">Twitter</a> | 
-    <a href="#">Instagram</a>
+  <p>Follow us on 
+    <a href="https://x.com/UniXinSocial" target="_blank">X</a> | 
+    <a href="https://instagram.com/unixgram" target="_blank">Instagram</a>
   </p>
 </footer>
 
-<!-- JS: Firebase + Particles -->
 <script type="module">
-import { initializeApp } from "https://www.gstatic.com/firebasejs/11.0.1/firebase-app.js";
-import { getFirestore, collection, addDoc } from "https://www.gstatic.com/firebasejs/11.0.1/firebase-firestore.js";
-
-const firebaseConfig = {
-  apiKey: "AIzaSyD8alIlbfFqBRkF7acwibTNTsRP-8XnbHg",
-  authDomain: "landing-b1822.firebaseapp.com",
-  projectId: "landing-b1822",
-  storageBucket: "landing-b1822.firebasestorage.app",
-  messagingSenderId: "11855079059",
-  appId: "1:11855079059:web:1085c85cf3ef3bb7cf4f66",
-  measurementId: "G-5S4P4SWD95"
-};
-
-const app = initializeApp(firebaseConfig);
-const db = getFirestore(app);
-
-const form = document.getElementById('emailForm');
-const input = document.getElementById('emailInput');
-const successMessage = document.getElementById('successMessage');
-
-form.addEventListener('submit', async (e) => {
-  e.preventDefault();
-  const email = input.value.trim();
-  if(email){
-    try {
-      await addDoc(collection(db, "subscribers"), { email, createdAt: new Date() });
-      successMessage.textContent = "✅ Thanks! You're on the list.";
-      input.value = '';
-    } catch (err) {
-      console.error("Error saving email:", err);
-      successMessage.textContent = "❌ Something went wrong, try again.";
-    }
+  // Stars generator
+  const starsContainer = document.getElementById('stars');
+  for (let i = 0; i < 120; i++) {
+    const star = document.createElement('div');
+    star.className = 'star';
+    star.style.top = Math.random() * 100 + '%';
+    star.style.left = Math.random() * 100 + '%';
+    star.style.animationDuration = (Math.random() * 3 + 2) + 's';
+    starsContainer.appendChild(star);
   }
-});
-</script>
 
-<script src="https://cdn.jsdelivr.net/npm/particles.js@2.0.0/particles.min.js"></script>
-<script>
-  /* Particles.js configuration */
-  particlesJS("particles-js", {
-    "particles": {
-      "number": {"value":80,"density":{"enable":true,"value_area":800}},
-      "color": {"value":"#ffffff"},
-      "shape": {"type":"circle"},
-      "opacity": {"value":0.8, "random":true},
-      "size": {"value":2,"random":true},
-      "line_linked":{"enable":true,"distance":150,"color":"#ffffff","opacity":0.2,"width":1},
-      "move":{"enable":true,"speed":1,"direction":"none","random":true,"straight":false,"out_mode":"out","bounce":false}
-    },
-    "interactivity":{"detect_on":"canvas","events":{"onhover":{"enable":true,"mode":"repulse"},"onclick":{"enable":true,"mode":"push"}}, "modes":{"repulse":{"distance":100},"push":{"particles_nb":4}}},
-    "retina_detect":true
+  // Firebase
+  import { initializeApp } from "https://www.gstatic.com/firebasejs/11.0.1/firebase-app.js";
+  import { getFirestore, collection, addDoc } from "https://www.gstatic.com/firebasejs/11.0.1/firebase-firestore.js";
+
+  const firebaseConfig = {
+    apiKey: "AIzaSyD8alIlbfFqBRkF7acwibTNTsRP-8XnbHg",
+    authDomain: "landing-b1822.firebaseapp.com",
+    projectId: "landing-b1822",
+    storageBucket: "landing-b1822.firebasestorage.app",
+    messagingSenderId: "11855079059",
+    appId: "1:11855079059:web:1085c85cf3ef3bb7cf4f66",
+    measurementId: "G-5S4P4SWD95"
+  };
+
+  const app = initializeApp(firebaseConfig);
+  const db = getFirestore(app);
+
+  const form = document.getElementById('emailForm');
+  const input = document.getElementById('emailInput');
+  const successMessage = document.getElementById('successMessage');
+
+  form.addEventListener('submit', async (e) => {
+    e.preventDefault();
+    const email = input.value.trim();
+    if (email) {
+      try {
+        await addDoc(collection(db, "subscribers"), { email, createdAt: new Date() });
+        successMessage.textContent = "✅ Thanks! You're on the list.";
+        input.value = '';
+      } catch (err) {
+        console.error("Error saving email:", err);
+        successMessage.textContent = "❌ Something went wrong, try again.";
+      }
+    }
   });
 </script>
 
