@@ -81,24 +81,13 @@
 
   .success { margin-top: 15px; color: #00ff99; font-weight: bold; }
 
-  .emoji {
-    position: absolute;
-    font-size: 2em;
-    animation: float 6s ease-in-out infinite;
-  }
-
-  @keyframes float {
-    0% { transform: translateY(0px) rotate(0deg); }
-    50% { transform: translateY(-30px) rotate(180deg); }
-    100% { transform: translateY(0px) rotate(360deg); }
-  }
-
+  /* حذف کلاس ایموجی و انیمیشن float */
 </style>
 </head>
 <body>
 
 <div class="container">
-  <h1>🚀 Something Awesome is Coming!</h1>
+  <h1>Something Awesome is Coming!</h1>
   <p>Drop your email below and be the first to know when we launch.</p>
   <form id="emailForm">
     <input type="email" id="emailInput" placeholder="Enter your email" required>
@@ -106,12 +95,6 @@
     <div class="success" id="successMessage"></div>
   </form>
 </div>
-
-<!-- Floating Emojis -->
-<div class="emoji" style="top:10%; left:20%;">✨</div>
-<div class="emoji" style="top:50%; left:70%;">🌟</div>
-<div class="emoji" style="top:80%; left:40%;">💫</div>
-<div class="emoji" style="top:30%; left:60%;">🚀</div>
 
 <script type="module">
 import { initializeApp } from "https://www.gstatic.com/firebasejs/11.0.1/firebase-app.js";
